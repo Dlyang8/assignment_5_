@@ -1,0 +1,88 @@
+---
+title: "Exploring WDI Dataset"
+author: "Daolong Yang"
+date: "10/7/2024"
+format: 
+    html: 
+        toc: true
+    pdf: 
+        includes:
+            in-header: header.tex
+bibliography: references.bib
+---
+
+# Setting up Data
+```{python}
+ #| echo: true
+ #| eval: true
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+data = pd.read_csv("wdi.csv")
+```
+
+## Exploratory Data Analysis
+```{python}
+gdp_summary = data['gdp_per_capita'].describe()
+print(gdp_summary)
+
+inflation_summary = data['inflation_rate'].describe()
+print(inflation_summary)
+
+gdp_growthrate = data['unemployment_rate'].describe()
+print(gdp_growthrate)
+```
+
+## Analysis
+#### GDP-Per-Capita
+The average GDP per capita is $20,345.71, with a wide range from $259.03 to $240,862.18. The median is $7,587.59, showing significant variation across countries.
+#### Inflation Rate
+The average inflation rate is 12.49%, ranging from -6.69% to 171.21%. The median rate is 7.97%, with high variability indicated by a large standard deviation.
+#### GDP-Growth-Rate
+The average GDP growth rate is 4.37%, with values ranging from -28.76% to 63.44%. The median growth rate is 4.20%.
+
+## Data Plots
+### GDP-Per-Capita across Countries
+```{python}
+#| echo: false
+plt.figure(figsize=(10, 6))
+plt.bar(data = data, x = 'life_expectancy', height = 'gdp_per_capita', color='skyblue')
+plt.xlabel('Life Expectancy')
+plt.ylabel('GDP per Capita (USD)')
+plt.title('GDP per Capita by Life Expectancy')
+plt.figtext(0.5, -0.1, 'Figure 1: Bar plot showing GDP per capita by country.', ha='center', fontsize=10)
+plt.figtext(0.5, -0.15, 'Source:  World Development Indicators', ha='center', fontsize=10)
+plt.tight_layout()
+plt.show()
+```
+
+### Unemployment Rate By Total Population
+```{python}
+#| echo: false
+plt.figure(figsize=(10, 6))
+plt.scatter(data = data, x = 'unemployment_rate', y = 'total_population', color='skyblue')
+plt.xlabel('Unemployment Rate')
+plt.ylabel('Total Population')
+plt.title('Unemployment Rate by Total Population')
+plt.figtext(0.5, -0.1, 'Figure 1: Scatter plot showing unemployment rate by total population.', ha='center', fontsize=10)
+plt.figtext(0.5, -0.15, 'Source:  World Development Indicators', ha='center', fontsize=10)
+plt.tight_layout()
+plt.show()
+```
+
+### Key Statistics
+```{python}
+agg_stats = data.groupby('unemployment_rate')['total_population'].agg([
+    'mean', 'max'
+]).reset_index()
+agg_stats.columns = ['Unemployment Rate', 'Mean Population', 'Max Population']
+print(agg_stats.head(5))
+
+agg_stats = data.groupby('life_expectancy')['gdp_per_capita'].agg([
+    'mean', 'max'
+]).reset_index()
+agg_stats.columns = ['Life Expectancy', 'Mean GDP-Per-Capita', 'Max GDP-Per-Capita']
+print(agg_stats.head(5))
+```
+

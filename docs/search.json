@@ -1,0 +1,44 @@
+[
+  {
+    "objectID": "presentation.html#analysis",
+    "href": "presentation.html#analysis",
+    "title": "WDI Exploration",
+    "section": "Analysis",
+    "text": "Analysis\nGDP-Per-Capita\nThe average GDP per capita is $20,345.71, with a wide range from $259.03 to $240,862.18. The median is $7,587.59, showing significant variation across countries. #### Inflation Rate The average inflation rate is 12.49%, ranging from -6.69% to 171.21%. The median rate is 7.97%, with high variability indicated by a large standard deviation. #### GDP-Growth-Rate The average GDP growth rate is 4.37%, with values ranging from -28.76% to 63.44%. The median growth rate is 4.20%."
+  },
+  {
+    "objectID": "presentation.html#data-plots",
+    "href": "presentation.html#data-plots",
+    "title": "WDI Exploration",
+    "section": "Data Plots",
+    "text": "Data Plots\nGDP-Per-Capita across Countries\n\n\n\n\n\n\n\n\n\nUnemployment Rate By Total Population\n\n\n\n\n\n\n\n\n\nKey Statistics\n\n\n   Unemployment Rate  Mean Population  Max Population\n0              0.130        2695122.0       2695122.0\n1              0.247       16767842.0      16767842.0\n2              0.552       26207977.0      26207977.0\n3              0.909        2538894.0       2538894.0\n4              0.919       12889576.0      12889576.0\n   Life Expectancy  Mean GDP-Per-Capita  Max GDP-Per-Capita\n0           52.997           699.463254          699.463254\n1           53.036           992.857328          992.857328\n2           53.633          2162.633732         2162.633732\n3           54.477           427.058096          427.058096\n4           55.567                  NaN                 NaN"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Exploring WDI Dataset",
+    "section": "",
+    "text": "#| echo: true\n #| eval: true\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\n\ndata = pd.read_csv(\"wdi.csv\")\n\n\n\n\ngdp_summary = data['gdp_per_capita'].describe()\nprint(gdp_summary)\n\ninflation_summary = data['inflation_rate'].describe()\nprint(inflation_summary)\n\ngdp_growthrate = data['unemployment_rate'].describe()\nprint(gdp_growthrate)\n\ncount       203.000000\nmean      20345.707649\nstd       31308.942225\nmin         259.025031\n25%        2570.563284\n50%        7587.588173\n75%       25982.630050\nmax      240862.182448\nName: gdp_per_capita, dtype: float64\ncount    169.000000\nmean      12.493936\nstd       19.682433\nmin       -6.687321\n25%        5.518129\n50%        7.967574\n75%       11.665567\nmax      171.205491\nName: inflation_rate, dtype: float64\ncount    186.000000\nmean       7.268661\nstd        5.827726\nmin        0.130000\n25%        3.500750\n50%        5.537500\n75%        9.455250\nmax       37.852000\nName: unemployment_rate, dtype: float64\n\n\n\n\n\n\n\nThe average GDP per capita is $20,345.71, with a wide range from $259.03 to $240,862.18. The median is $7,587.59, showing significant variation across countries. #### Inflation Rate The average inflation rate is 12.49%, ranging from -6.69% to 171.21%. The median rate is 7.97%, with high variability indicated by a large standard deviation. #### GDP-Growth-Rate The average GDP growth rate is 4.37%, with values ranging from -28.76% to 63.44%. The median growth rate is 4.20%.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nagg_stats = data.groupby('unemployment_rate')['total_population'].agg([\n    'mean', 'max'\n]).reset_index()\nagg_stats.columns = ['Unemployment Rate', 'Mean Population', 'Max Population']\nprint(agg_stats.head(5))\n\nagg_stats = data.groupby('life_expectancy')['gdp_per_capita'].agg([\n    'mean', 'max'\n]).reset_index()\nagg_stats.columns = ['Life Expectancy', 'Mean GDP-Per-Capita', 'Max GDP-Per-Capita']\nprint(agg_stats.head(5))\n\n   Unemployment Rate  Mean Population  Max Population\n0              0.130        2695122.0       2695122.0\n1              0.247       16767842.0      16767842.0\n2              0.552       26207977.0      26207977.0\n3              0.909        2538894.0       2538894.0\n4              0.919       12889576.0      12889576.0\n   Life Expectancy  Mean GDP-Per-Capita  Max GDP-Per-Capita\n0           52.997           699.463254          699.463254\n1           53.036           992.857328          992.857328\n2           53.633          2162.633732         2162.633732\n3           54.477           427.058096          427.058096\n4           55.567                  NaN                 NaN"
+  },
+  {
+    "objectID": "about.html#exploratory-data-analysis",
+    "href": "about.html#exploratory-data-analysis",
+    "title": "Exploring WDI Dataset",
+    "section": "",
+    "text": "gdp_summary = data['gdp_per_capita'].describe()\nprint(gdp_summary)\n\ninflation_summary = data['inflation_rate'].describe()\nprint(inflation_summary)\n\ngdp_growthrate = data['unemployment_rate'].describe()\nprint(gdp_growthrate)\n\ncount       203.000000\nmean      20345.707649\nstd       31308.942225\nmin         259.025031\n25%        2570.563284\n50%        7587.588173\n75%       25982.630050\nmax      240862.182448\nName: gdp_per_capita, dtype: float64\ncount    169.000000\nmean      12.493936\nstd       19.682433\nmin       -6.687321\n25%        5.518129\n50%        7.967574\n75%       11.665567\nmax      171.205491\nName: inflation_rate, dtype: float64\ncount    186.000000\nmean       7.268661\nstd        5.827726\nmin        0.130000\n25%        3.500750\n50%        5.537500\n75%        9.455250\nmax       37.852000\nName: unemployment_rate, dtype: float64"
+  },
+  {
+    "objectID": "about.html#analysis",
+    "href": "about.html#analysis",
+    "title": "Exploring WDI Dataset",
+    "section": "",
+    "text": "The average GDP per capita is $20,345.71, with a wide range from $259.03 to $240,862.18. The median is $7,587.59, showing significant variation across countries. #### Inflation Rate The average inflation rate is 12.49%, ranging from -6.69% to 171.21%. The median rate is 7.97%, with high variability indicated by a large standard deviation. #### GDP-Growth-Rate The average GDP growth rate is 4.37%, with values ranging from -28.76% to 63.44%. The median growth rate is 4.20%."
+  },
+  {
+    "objectID": "about.html#data-plots",
+    "href": "about.html#data-plots",
+    "title": "Exploring WDI Dataset",
+    "section": "",
+    "text": "agg_stats = data.groupby('unemployment_rate')['total_population'].agg([\n    'mean', 'max'\n]).reset_index()\nagg_stats.columns = ['Unemployment Rate', 'Mean Population', 'Max Population']\nprint(agg_stats.head(5))\n\nagg_stats = data.groupby('life_expectancy')['gdp_per_capita'].agg([\n    'mean', 'max'\n]).reset_index()\nagg_stats.columns = ['Life Expectancy', 'Mean GDP-Per-Capita', 'Max GDP-Per-Capita']\nprint(agg_stats.head(5))\n\n   Unemployment Rate  Mean Population  Max Population\n0              0.130        2695122.0       2695122.0\n1              0.247       16767842.0      16767842.0\n2              0.552       26207977.0      26207977.0\n3              0.909        2538894.0       2538894.0\n4              0.919       12889576.0      12889576.0\n   Life Expectancy  Mean GDP-Per-Capita  Max GDP-Per-Capita\n0           52.997           699.463254          699.463254\n1           53.036           992.857328          992.857328\n2           53.633          2162.633732         2162.633732\n3           54.477           427.058096          427.058096\n4           55.567                  NaN                 NaN"
+  }
+]
