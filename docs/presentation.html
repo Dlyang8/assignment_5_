@@ -30,6 +30,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #f8f8f2;  }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #f8f8f2; } /* Normal */
+    code span.al { color: #f07178; background-color: #2a0f15; font-weight: bold; } /* Alert */
+    code span.an { color: #d4d0ab; } /* Annotation */
+    code span.at { color: #00e0e0; } /* Attribute */
+    code span.bn { color: #d4d0ab; } /* BaseN */
+    code span.bu { color: #abe338; } /* BuiltIn */
+    code span.cf { color: #ffa07a; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #abe338; } /* Char */
+    code span.cn { color: #ffd700; } /* Constant */
+    code span.co { color: #f8f8f2; font-style: italic; } /* Comment */
+    code span.cv { color: #ffd700; } /* CommentVar */
+    code span.do { color: #f8f8f2; } /* Documentation */
+    code span.dt { color: #ffa07a; } /* DataType */
+    code span.dv { color: #d4d0ab; } /* DecVal */
+    code span.er { color: #f07178; text-decoration: underline; } /* Error */
+    code span.ex { color: #00e0e0; font-weight: bold; } /* Extension */
+    code span.fl { color: #d4d0ab; } /* Float */
+    code span.fu { color: #ffa07a; } /* Function */
+    code span.im { color: #abe338; } /* Import */
+    code span.in { color: #d4d0ab; } /* Information */
+    code span.kw { color: #ffa07a; font-weight: bold; } /* Keyword */
+    code span.op { color: #ffa07a; } /* Operator */
+    code span.ot { color: #00e0e0; } /* Other */
+    code span.pp { color: #dcc6e0; } /* Preprocessor */
+    code span.re { color: #00e0e0; background-color: #f8f8f2; } /* RegionMarker */
+    code span.sc { color: #abe338; } /* SpecialChar */
+    code span.ss { color: #abe338; } /* SpecialString */
+    code span.st { color: #abe338; } /* String */
+    code span.va { color: #00e0e0; } /* Variable */
+    code span.vs { color: #abe338; } /* VerbatimString */
+    code span.wa { color: #dcc6e0; } /* Warning */
   </style>
   <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -341,13 +406,29 @@ Daolong Yang
 </section>
 <section id="wdi-dataset-presentation" class="title-slide slide level1 center">
 <h1>WDI Dataset Presentation</h1>
-
+<div id="5b0c3ac4" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a> <span class="co">#| echo: false</span></span>
+<span id="cb1-2"><a></a> <span class="co">#| eval: true</span></span>
+<span id="cb1-3"><a></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-4"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-5"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-6"><a></a></span>
+<span id="cb1-7"><a></a>data <span class="op">=</span> pd.read_csv(<span class="st">"wdi.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 
 <section>
 <section id="exploratory-data-analysis" class="title-slide slide level1 center">
 <h1>Exploratory Data Analysis</h1>
-<div id="e50eb166" class="cell" data-execution_count="2">
+<div id="526e645f" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a>gdp_summary <span class="op">=</span> data[<span class="st">'gdp_per_capita'</span>].describe()</span>
+<span id="cb2-2"><a></a><span class="bu">print</span>(gdp_summary)</span>
+<span id="cb2-3"><a></a></span>
+<span id="cb2-4"><a></a>inflation_summary <span class="op">=</span> data[<span class="st">'inflation_rate'</span>].describe()</span>
+<span id="cb2-5"><a></a><span class="bu">print</span>(inflation_summary)</span>
+<span id="cb2-6"><a></a></span>
+<span id="cb2-7"><a></a>gdp_growthrate <span class="op">=</span> data[<span class="st">'unemployment_rate'</span>].describe()</span>
+<span id="cb2-8"><a></a><span class="bu">print</span>(gdp_growthrate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>count       203.000000
 mean      20345.707649
@@ -381,33 +462,45 @@ Name: unemployment_rate, dtype: float64</code></pre>
 </section>
 <section id="analysis" class="slide level2">
 <h2>Analysis</h2>
-<h4 id="gdp-per-capita">GDP-Per-Capita</h4>
-<p>The average GDP per capita is $20,345.71, with a wide range from $259.03 to $240,862.18. The median is $7,587.59, showing significant variation across countries. #### Inflation Rate The average inflation rate is 12.49%, ranging from -6.69% to 171.21%. The median rate is 7.97%, with high variability indicated by a large standard deviation. #### GDP-Growth-Rate The average GDP growth rate is 4.37%, with values ranging from -28.76% to 63.44%. The median growth rate is 4.20%.</p>
+<h3 id="gdp-per-capita">GDP-Per-Capita</h3>
+<p>The average GDP per capita is $20,345.71, with a wide range from $259.03 to $240,862.18. The median is $7,587.59, showing significant variation across countries. ### Inflation Rate</p>
+<p>The average inflation rate is 12.49%, ranging from -6.69% to 171.21%. The median rate is 7.97%, with high variability indicated by a large standard deviation. ### GDP-Growth-Rate The average GDP growth rate is 4.37%, with values ranging from -28.76% to 63.44%. The median growth rate is 4.20%.</p>
 </section>
 <section id="data-plots" class="slide level2">
 <h2>Data Plots</h2>
 <h3 id="gdp-per-capita-across-countries">GDP-Per-Capita across Countries</h3>
-<div id="0dc31a04" class="cell" data-execution_count="3">
+<div id="ed6d1149" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="presentation_files/figure-revealjs/cell-4-output-1.png" width="949" height="670"></p>
+<p><img data-src="presentation_files/figure-html/cell-4-output-1.png" width="949" height="670"></p>
 </figure>
 </div>
 </div>
 </div>
 <h3 id="unemployment-rate-by-total-population">Unemployment Rate By Total Population</h3>
-<div id="598909f0" class="cell" data-execution_count="4">
+<div id="311d8714" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="presentation_files/figure-revealjs/cell-5-output-1.png" width="949" height="670"></p>
+<p><img data-src="presentation_files/figure-html/cell-5-output-1.png" width="949" height="670"></p>
 </figure>
 </div>
 </div>
 </div>
 <h3 id="key-statistics">Key Statistics</h3>
-<div id="4175d1ca" class="cell" data-execution_count="5">
+<div id="f879900d" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a>agg_stats <span class="op">=</span> data.groupby(<span class="st">'unemployment_rate'</span>)[<span class="st">'total_population'</span>].agg([</span>
+<span id="cb4-2"><a></a>    <span class="st">'mean'</span>, <span class="st">'max'</span></span>
+<span id="cb4-3"><a></a>]).reset_index()</span>
+<span id="cb4-4"><a></a>agg_stats.columns <span class="op">=</span> [<span class="st">'Unemployment Rate'</span>, <span class="st">'Mean Population'</span>, <span class="st">'Max Population'</span>]</span>
+<span id="cb4-5"><a></a><span class="bu">print</span>(agg_stats.head(<span class="dv">5</span>))</span>
+<span id="cb4-6"><a></a></span>
+<span id="cb4-7"><a></a>agg_stats <span class="op">=</span> data.groupby(<span class="st">'life_expectancy'</span>)[<span class="st">'gdp_per_capita'</span>].agg([</span>
+<span id="cb4-8"><a></a>    <span class="st">'mean'</span>, <span class="st">'max'</span></span>
+<span id="cb4-9"><a></a>]).reset_index()</span>
+<span id="cb4-10"><a></a>agg_stats.columns <span class="op">=</span> [<span class="st">'Life Expectancy'</span>, <span class="st">'Mean GDP-Per-Capita'</span>, <span class="st">'Max GDP-Per-Capita'</span>]</span>
+<span id="cb4-11"><a></a><span class="bu">print</span>(agg_stats.head(<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Unemployment Rate  Mean Population  Max Population
 0              0.130        2695122.0       2695122.0
