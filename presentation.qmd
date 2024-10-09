@@ -23,6 +23,7 @@ data = pd.read_csv("wdi.csv")
 ```
 
 # Exploratory Data Analysis
+
 ```{python}
 gdp_summary = data['gdp_per_capita'].describe()
 print(gdp_summary)
@@ -33,15 +34,20 @@ print(inflation_summary)
 gdp_growthrate = data['unemployment_rate'].describe()
 print(gdp_growthrate)
 ```
+
 ## Analysis
-#### GDP-Per-Capita
+
+### GDP-Per-Capita
+
 The average GDP per capita is $20,345.71, with a wide range from $259.03 to $240,862.18. The median is $7,587.59, showing significant variation across countries.
-#### Inflation Rate
+### Inflation Rate
+
 The average inflation rate is 12.49%, ranging from -6.69% to 171.21%. The median rate is 7.97%, with high variability indicated by a large standard deviation.
-#### GDP-Growth-Rate
+### GDP-Growth-Rate
 The average GDP growth rate is 4.37%, with values ranging from -28.76% to 63.44%. The median growth rate is 4.20%.
 
 ## Data Plots
+
 ### GDP-Per-Capita across Countries
 ```{python}
 #| echo: false

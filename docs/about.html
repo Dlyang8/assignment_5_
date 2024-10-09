@@ -128,6 +128,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link active" href="./about.html" aria-current="page"> 
 <span class="menu-text">Home</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./presentation.html"> 
+<span class="menu-text">Presentation</span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -194,7 +198,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="setting-up-data" class="level1">
 <h1>Setting up Data</h1>
-<div id="2357adc6" class="cell" data-execution_count="1">
+<div id="e0f07aad" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a> <span class="co">#| echo: true</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a> <span class="co">#| eval: true</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -205,7 +209,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="exploratory-data-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="exploratory-data-analysis">Exploratory Data Analysis</h2>
-<div id="018685b2" class="cell" data-execution_count="2">
+<div id="f1e05669" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>gdp_summary <span class="op">=</span> data[<span class="st">'gdp_per_capita'</span>].describe()</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(gdp_summary)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -256,7 +260,7 @@ Name: unemployment_rate, dtype: float64</code></pre>
 <h2 class="anchored" data-anchor-id="data-plots">Data Plots</h2>
 <section id="gdp-per-capita-across-countries" class="level3">
 <h3 class="anchored" data-anchor-id="gdp-per-capita-across-countries">GDP-Per-Capita across Countries</h3>
-<div id="b6aa5a5e" class="cell" data-execution_count="3">
+<div id="2797fb0f" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -268,7 +272,7 @@ Name: unemployment_rate, dtype: float64</code></pre>
 </section>
 <section id="unemployment-rate-by-total-population" class="level3">
 <h3 class="anchored" data-anchor-id="unemployment-rate-by-total-population">Unemployment Rate By Total Population</h3>
-<div id="2762cef1" class="cell" data-execution_count="4">
+<div id="9ea97701" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -280,7 +284,7 @@ Name: unemployment_rate, dtype: float64</code></pre>
 </section>
 <section id="key-statistics" class="level3">
 <h3 class="anchored" data-anchor-id="key-statistics">Key Statistics</h3>
-<div id="c2321683" class="cell" data-execution_count="5">
+<div id="e5e10bca" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>agg_stats <span class="op">=</span> data.groupby(<span class="st">'unemployment_rate'</span>)[<span class="st">'total_population'</span>].agg([</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'mean'</span>, <span class="st">'max'</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>]).reset_index()</span>
